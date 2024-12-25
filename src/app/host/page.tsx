@@ -33,16 +33,24 @@ const checkForWin = (
     Array(cols).fill(false)
   );
 
-  // Directions (up, down, left, right)
-  const directions = [
+  // Define directions for odd and even rows
+  const baseDirections = [
     [-1, 0], // up
     [1, 0], // down
     [0, -1], // left
-    [0, 1], // right,
-    [-1, -1], // top-left
+    [0, 1], // right
+  ];
+
+  const evenRowDirections = [
+    ...baseDirections,
     [-1, 1], // top-right
-    [1, -1], // bottom-left
     [1, 1], // bottom-right
+  ];
+
+  const oddRowDirections = [
+    ...baseDirections,
+    [-1, -1], // top-left,
+    [1, -1], // bottom-left
   ];
 
   const dfs = (r: number, c: number): boolean => {
@@ -58,6 +66,8 @@ const checkForWin = (
     ) {
       return true;
     }
+
+    const directions = r % 2 === 0 ? evenRowDirections : oddRowDirections;
 
     for (const [dr, dc] of directions) {
       const nr = r + dr;
