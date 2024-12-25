@@ -18,6 +18,7 @@ export default function HostPage() {
   const [grid, setGrid] = useState<string[][]>([]);
   const [selectedLetter, setSelectedLetter] = useState<string>("");
   const [showAnswer, setShowAnswer] = useState(false);
+  const [teamColors, setTeamColors] = useState<Record<string, string>>({});
 
   // Generate a 5x5 grid of unique letters
   const generateGrid = () => {
@@ -51,6 +52,16 @@ export default function HostPage() {
     setShowAnswer(false); // Reset showAnswer state when a new letter is clicked
   };
 
+  // Handle team selection
+  const handleTeamSelect = (team: "Red" | "Blue") => {
+    setTeamColors((prev) => ({
+      ...prev,
+      [selectedLetter]: team === "Red" ? "#ffcccc" : "#cce5ff", // Light red or blue
+    }));
+    setSelectedLetter(""); // Deselect the current letter
+    setShowAnswer(false); // Reset answer visibility
+  };
+
   const selectedQA =
     selectedLetter && selectedLetter !== ""
       ? getQuestionAndAnswer(selectedLetter)
@@ -75,7 +86,7 @@ export default function HostPage() {
               className="d-flex justify-content-center align-items-center border"
               style={{
                 height: "50px",
-                backgroundColor: "#f9f9f9",
+                backgroundColor: teamColors[letter] || "#f9f9f9",
                 textAlign: "center",
                 cursor: "pointer",
               }}
@@ -99,9 +110,24 @@ export default function HostPage() {
                 Show Answer
               </Button>
             ) : (
-              <h5>
-                <strong>Answer:</strong> {selectedQA.answer}
-              </h5>
+              <>
+                <h5>
+                  <strong>Answer:</strong> {selectedQA.answer}
+                </h5>
+                <Button
+                  variant="danger"
+                  className="me-2"
+                  onClick={() => handleTeamSelect("Red")}
+                >
+                  Red Team
+                </Button>
+                <Button
+                  variant="primary"
+                  onClick={() => handleTeamSelect("Blue")}
+                >
+                  Blue Team
+                </Button>
+              </>
             )}
           </Col>
         </Row>
