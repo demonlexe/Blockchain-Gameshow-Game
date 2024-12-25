@@ -81,6 +81,10 @@ jobs:
         run: |
           cd client
           ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Export static site with Next.js
+        run: |
+          cd client
+          next export # This will create the "out" directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
