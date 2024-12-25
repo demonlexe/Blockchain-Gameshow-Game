@@ -152,6 +152,7 @@ export default function HostPage() {
     setLastUpdatedTeam(teamColor); // Track the last team that made a move
     setSelectedLetter(""); // Deselect the current letter
     setShowAnswer(false); // Reset answer visibility
+    setCurrentQuestion(null); // Reset current question
   };
 
   // Check for a win after teamColors updates
@@ -180,6 +181,8 @@ export default function HostPage() {
     setShowAnswer(false); // Hide answer when selecting a new question
   };
 
+  const currentQuestionAlreadyAnswered =
+    teamColors[selectedLetter] !== undefined;
   return (
     <Container>
       {/* Game Instructions */}
@@ -193,7 +196,7 @@ export default function HostPage() {
       />
 
       {/* Display Question and Answer */}
-      {!winner && (
+      {!winner && !currentQuestionAlreadyAnswered && (
         <QuestionSection
           currentQuestion={currentQuestion}
           showAnswer={showAnswer}
