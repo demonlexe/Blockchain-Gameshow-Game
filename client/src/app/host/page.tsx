@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Container } from "react-bootstrap";
 import questions from "@/mockdata/triviaQuestions";
-import GameInstructions from "@/components/GameInstructions";
 import LetterGrid from "@/components/LetterGrid";
 import QuestionSection from "@/components/QuestionSection";
 
@@ -196,10 +195,6 @@ export default function HostPage() {
     teamColors[selectedLetter] !== undefined;
   return (
     <Container>
-      {/* Game Instructions */}
-      <GameInstructions />
-
-      {/* Letter Grid */}
       <LetterGrid
         grid={grid}
         teamColors={teamColors}

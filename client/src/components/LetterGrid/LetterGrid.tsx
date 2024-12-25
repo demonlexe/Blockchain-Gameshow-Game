@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
-
+import Arrow from "../Arrow";
+// LetterGrid component with arrows around the grid
 interface LetterGridProps {
   grid: string[][];
   teamColors: Record<string, string>;
@@ -14,12 +15,56 @@ const LetterGrid: React.FC<LetterGridProps> = ({
 }) => (
   <div
     style={{
+      position: "relative",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       marginTop: "4rem",
     }}
   >
+    {/* Arrows around the grid */}
+    <Arrow
+      color="red"
+      direction="up"
+      style={{
+        position: "absolute",
+        top: "-30px",
+        left: "50%",
+        transform: "translateX(-50%)",
+      }}
+    />
+    <Arrow
+      color="red"
+      direction="down"
+      style={{
+        position: "absolute",
+        bottom: "-30px",
+        left: "50%",
+        transform: "translateX(-50%)",
+      }}
+    />
+    <Arrow
+      color="blue"
+      direction="left"
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "-30px",
+        transform: "translateY(-50%)",
+      }}
+    />
+    <Arrow
+      color="blue"
+      direction="right"
+      style={{
+        position: "absolute",
+        top: "50%",
+        right: "-30px",
+        transform: "translateY(-50%)",
+      }}
+    />
+
+    {/* Grid layout */}
     {grid.map((row, rowIndex) => (
       <div
         key={rowIndex}
