@@ -1,17 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import questions from "@/mockdata/triviaQuestions";
 
-// Extract unique first letters from answers
-const getUniqueFirstLetters = () => {
-  const letters = new Set(
-    questions
-      .map((q) => q.answer.charAt(0).toUpperCase()) // Get the first letter (uppercase)
-      .filter((letter) => /^[A-Z]$/.test(letter)) // Ensure it's a valid uppercase letter
-  );
-  return Array.from(letters);
+// Create a map of questions and answers for easy lookup
+const createQuestionMap = () => {
+  const questionMap: Record<string, { question: string; answer: string }[]> =
+    {};
+  questions.forEach((q) => {
+    const letter = q.answer.charAt(0).toUpperCase();
+    if (!questionMap[letter]) {
+      questionMap[letter] = [];
+    }
+    questionMap[letter].push({ question: q.question, answer: q.answer });
+  });
+  return questionMap;
 };
 
 export default function HostPage() {
@@ -19,37 +23,46 @@ export default function HostPage() {
   const [selectedLetter, setSelectedLetter] = useState<string>("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [teamColors, setTeamColors] = useState<Record<string, string>>({});
+  const [currentQuestion, setCurrentQuestion] = useState<{
+    question: string;
+    answer: string;
+  } | null>(null);
+  const [availableQuestions, setAvailableQuestions] = useState<
+    { question: string; answer: string }[]
+  >([]);
+  const [newQuestionDisabled, setNewQuestionDisabled] =
+    useState<boolean>(false);
 
-  // Generate a 5x5 grid of unique letters
-  const generateGrid = () => {
-    const letters = getUniqueFirstLetters();
-    if (letters.length < 25) {
-      console.warn("Not enough unique letters to fill a 5x5 grid!");
-      return Array.from({ length: 5 }, () => Array(5).fill("")); // Fallback empty grid
-    }
-
-    // Shuffle and select the first 25 letters
-    const shuffled = letters.sort(() => Math.random() - 0.5).slice(0, 25);
-
-    // Arrange into a 5x5 grid
-    return Array.from({ length: 5 }, (_, rowIndex) =>
-      shuffled.slice(rowIndex * 5, rowIndex * 5 + 5)
-    );
-  };
+  // Create question map
+  const questionMap = useMemo(() => createQuestionMap(), []);
 
   useEffect(() => {
-    setGrid(generateGrid());
-  }, []);
+    // Generate a 5x5 grid of unique letters
+    const generateGrid = () => {
+      const letters = Object.keys(questionMap);
+      if (letters.length < 25) {
+        console.warn("Not enough unique letters to fill a 5x5 grid!");
+        return Array.from({ length: 5 }, () => Array(5).fill("")); // Fallback empty grid
+      }
 
-  // Get the question and answer for the selected letter
-  const getQuestionAndAnswer = (letter: string) => {
-    return questions.find((q) => q.answer.charAt(0).toUpperCase() === letter);
-  };
+      // Shuffle and select the first 25 letters
+      const shuffled = letters.sort(() => Math.random() - 0.5).slice(0, 25);
+
+      // Arrange into a 5x5 grid
+      return Array.from({ length: 5 }, (_, rowIndex) =>
+        shuffled.slice(rowIndex * 5, rowIndex * 5 + 5)
+      );
+    };
+    setGrid(generateGrid());
+  }, [questionMap]);
 
   // Handle letter click
   const handleLetterClick = (letter: string) => {
     setSelectedLetter(letter);
-    setShowAnswer(false); // Reset showAnswer state when a new letter is clicked
+    setShowAnswer(false); // Reset answer visibility when a new letter is clicked
+    setAvailableQuestions(questionMap[letter] || []);
+    setNewQuestionDisabled(false); // Enable "New Question" button
+    setCurrentQuestion(questionMap[letter]?.[0] || null); // Set the first question for the selected letter
   };
 
   // Handle team selection
@@ -62,10 +75,20 @@ export default function HostPage() {
     setShowAnswer(false); // Reset answer visibility
   };
 
-  const selectedQA =
-    selectedLetter && selectedLetter !== ""
-      ? getQuestionAndAnswer(selectedLetter)
-      : null;
+  // Handle new question selection
+  const handleNewQuestion = () => {
+    const randomNewQuestion =
+      availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+    if (availableQuestions.length <= 1) {
+      setNewQuestionDisabled(true);
+      return;
+    }
+
+    setCurrentQuestion(randomNewQuestion);
+    setAvailableQuestions(questionMap[selectedLetter] || []);
+    setShowAnswer(false); // Hide answer when selecting a new question
+  };
 
   return (
     <Container>
@@ -99,11 +122,11 @@ export default function HostPage() {
       ))}
 
       {/* Display Question and Answer */}
-      {selectedQA && (
+      {currentQuestion && (
         <Row className="mt-4">
           <Col>
             <h5>
-              <strong>Question:</strong> {selectedQA.question}
+              <strong>Question:</strong> {currentQuestion.question}
             </h5>
             {!showAnswer ? (
               <Button variant="primary" onClick={() => setShowAnswer(true)}>
@@ -112,7 +135,7 @@ export default function HostPage() {
             ) : (
               <>
                 <h5>
-                  <strong>Answer:</strong> {selectedQA.answer}
+                  <strong>Answer:</strong> {currentQuestion.answer}
                 </h5>
                 <Button
                   variant="danger"
@@ -123,10 +146,23 @@ export default function HostPage() {
                 </Button>
                 <Button
                   variant="primary"
+                  className="me-2"
                   onClick={() => handleTeamSelect("Blue")}
                 >
                   Blue Team
                 </Button>
+                <Button
+                  variant="warning"
+                  onClick={handleNewQuestion}
+                  disabled={newQuestionDisabled}
+                >
+                  New Question
+                </Button>
+                {newQuestionDisabled && (
+                  <p style={{ color: "red" }}>
+                    No other questions available with this letter.
+                  </p>
+                )}
               </>
             )}
           </Col>

@@ -7,6 +7,11 @@ const questions: Array<{
     answer: "Apple",
   }, // A
   { question: "What type of bear lives in the Arctic?", answer: "Bear" }, // B
+  // B 2
+  {
+    question: "What is the best city of NYC?",
+    answer: "Brooklyn",
+  },
   {
     question: "What is a large feline known for its speed?",
     answer: "Cheetah",
