@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import questions from "@/mockdata/triviaQuestions";
 
@@ -13,28 +14,31 @@ const getUniqueFirstLetters = () => {
   return Array.from(letters);
 };
 
-// Generate a 5x5 grid of unique letters
-const generateGrid = () => {
-  const letters = getUniqueFirstLetters();
-  if (letters.length < 25) {
-    console.warn("Not enough unique letters to fill a 5x5 grid!");
-    return Array.from({ length: 5 }, () => Array(5).fill("")); // Fallback empty grid
-  }
-
-  // Shuffle and select the first 25 letters
-  const shuffled = letters.sort(() => Math.random() - 0.5).slice(0, 25);
-
-  // Arrange into a 5x5 grid
-  return Array.from({ length: 5 }, (_, rowIndex) =>
-    shuffled.slice(rowIndex * 5, rowIndex * 5 + 5)
-  );
-};
-
-const grid = generateGrid();
-
 export default function HostPage() {
-  const [selectedLetter, setSelectedLetter] = useState("");
+  const [grid, setGrid] = useState<string[][]>([]);
+  const [selectedLetter, setSelectedLetter] = useState<string>("");
   const [showAnswer, setShowAnswer] = useState(false);
+
+  // Generate a 5x5 grid of unique letters
+  const generateGrid = () => {
+    const letters = getUniqueFirstLetters();
+    if (letters.length < 25) {
+      console.warn("Not enough unique letters to fill a 5x5 grid!");
+      return Array.from({ length: 5 }, () => Array(5).fill("")); // Fallback empty grid
+    }
+
+    // Shuffle and select the first 25 letters
+    const shuffled = letters.sort(() => Math.random() - 0.5).slice(0, 25);
+
+    // Arrange into a 5x5 grid
+    return Array.from({ length: 5 }, (_, rowIndex) =>
+      shuffled.slice(rowIndex * 5, rowIndex * 5 + 5)
+    );
+  };
+
+  useEffect(() => {
+    setGrid(generateGrid());
+  }, []);
 
   // Get the question and answer for the selected letter
   const getQuestionAndAnswer = (letter: string) => {
@@ -56,7 +60,9 @@ export default function HostPage() {
     <Container>
       {/* Top Button */}
       <Row className="mb-3">
-        <Col> </Col>
+        <Col>
+          <Button>Hey!</Button>
+        </Col>
       </Row>
 
       {/* Letter Grid */}
