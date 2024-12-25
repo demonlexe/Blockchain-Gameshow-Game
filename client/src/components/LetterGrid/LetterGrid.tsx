@@ -13,10 +13,22 @@ const LetterGrid: React.FC<LetterGridProps> = ({
   handleLetterClick,
 }) => (
   <div
-    style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    }}
   >
     {grid.map((row, rowIndex) => (
-      <div key={rowIndex} style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        key={rowIndex}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "-15px", // Reduce vertical gap
+          marginLeft: rowIndex % 2 === 0 ? "60px" : "0px", // Stagger rows
+        }}
+      >
         {row.map((letter, colIndex) => (
           <div
             key={`${rowIndex}-${colIndex}`}
@@ -27,9 +39,9 @@ const LetterGrid: React.FC<LetterGridProps> = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              width: "60px", // Adjust the size of the hexagon
+              width: "60px",
               height: "60px",
-              margin: "3px", // Space between hexagons
+              margin: "0px",
             }}
             onClick={() => handleLetterClick(letter)}
           >
