@@ -23,6 +23,7 @@ const LetterGrid: React.FC<LetterGridProps> = ({
         flexDirection: "column",
         alignItems: "center",
         marginTop: "8rem",
+        marginRight: "50px",
         maxWidth: "50%",
         alignSelf: "center",
       }}

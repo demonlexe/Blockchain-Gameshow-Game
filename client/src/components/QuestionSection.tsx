@@ -18,8 +18,10 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
   newQuestionDisabled,
   handleTeamSelect,
 }) => (
-  <Row className="mt-4">
-    <Col>
+  <Row style={{ marginTop: "8rem" }}>
+    <Col
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       {currentQuestion && (
         <>
           <h5>
