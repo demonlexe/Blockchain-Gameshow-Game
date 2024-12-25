@@ -26,7 +26,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
             <strong>Question:</strong> {currentQuestion.question}
           </h5>
           {!showAnswer ? (
-            <Button variant="primary" onClick={handleShowAnswer}>
+            <Button variant="primary" onClick={handleShowAnswer} size="lg">
               Show Answer
             </Button>
           ) : (
@@ -34,32 +34,37 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
               <h5>
                 <strong>Answer:</strong> {currentQuestion.answer}
               </h5>
-              <Button
-                variant="danger"
-                className="me-2"
-                onClick={() => handleTeamSelect("Red")}
-              >
-                Red Team
-              </Button>
-              <Button
-                variant="primary"
-                className="me-2"
-                onClick={() => handleTeamSelect("Blue")}
-              >
-                Blue Team
-              </Button>
-              <Button
-                variant="warning"
-                onClick={handleNewQuestion}
-                disabled={newQuestionDisabled}
-              >
-                New Question
-              </Button>
-              {newQuestionDisabled && (
-                <p style={{ color: "red" }}>
-                  No other questions available with this letter.
-                </p>
-              )}
+              <div style={{ marginTop: "20px" }}>
+                <Button
+                  variant="danger"
+                  className="me-4"
+                  size="lg"
+                  onClick={() => handleTeamSelect("Red")}
+                >
+                  Red Team
+                </Button>
+                <Button
+                  variant="primary"
+                  className="me-4"
+                  size="lg"
+                  onClick={() => handleTeamSelect("Blue")}
+                >
+                  Blue Team
+                </Button>
+                <Button
+                  variant="warning"
+                  size="lg"
+                  onClick={handleNewQuestion}
+                  disabled={newQuestionDisabled}
+                >
+                  New Question
+                </Button>
+                {newQuestionDisabled && (
+                  <p style={{ color: "red" }}>
+                    No other questions available with this letter.
+                  </p>
+                )}
+              </div>
             </>
           )}
         </>
