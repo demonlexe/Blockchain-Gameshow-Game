@@ -34,7 +34,7 @@ export default function Header() {
         >
           <Nav className="align-items-center">
             <Nav.Link
-              href="/host"
+              href="/Blockchain-Gameshow-Game/host"
               className="mx-2"
               style={{ color: getLinkColor("/host") }}
               onClick={() => router.push("/host")}
