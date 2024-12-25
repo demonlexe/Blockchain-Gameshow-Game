@@ -1,0 +1,42 @@
+// Import Bootstrap's default variables first
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+// Define your custom colors
+// $primary: #479ee0;
+ 
+* {
+  font-family: var(--font-medieval);
+}
+
+body {
+  background: linear-gradient(45deg, #a67c52, #bdb76b, #8b4513);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+
+  /* Adding texture-like appearance */
+  background-blend-mode: multiply;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Define the new theme colors
+$custom-theme-colors: (
+  // "primary": $primary
+);
+
+// Merge the default theme colors with your custom ones
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+// Now import Bootstrap to apply the changes
+@import '~bootstrap/scss/bootstrap';
