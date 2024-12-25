@@ -72,12 +72,18 @@ const checkForWin = (
   };
 
   // Check for a starting point for DFS on each side
-  for (let r = 0; r < rows; r++) {
+  if (teamColor === "#ffcccc") {
+    // Red team: Start DFS from the top row
     for (let c = 0; c < cols; c++) {
-      if (teamColors[grid[r][c]] === teamColor && !visited[r][c]) {
-        if (dfs(r, c)) {
-          return true;
-        }
+      if (teamColors[grid[0][c]] === teamColor && dfs(0, c)) {
+        return true;
+      }
+    }
+  } else if (teamColor === "#cce5ff") {
+    // Blue team: Start DFS from the leftmost column
+    for (let r = 0; r < rows; r++) {
+      if (teamColors[grid[r][0]] === teamColor && dfs(r, 0)) {
+        return true;
       }
     }
   }
@@ -90,6 +96,7 @@ export default function HostPage() {
   const [selectedLetter, setSelectedLetter] = useState<string>("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [teamColors, setTeamColors] = useState<Record<string, string>>({});
+  const [lastUpdatedTeam, setLastUpdatedTeam] = useState<string | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<{
     question: string;
     answer: string;
@@ -135,18 +142,28 @@ export default function HostPage() {
 
   // Handle team selection
   const handleTeamSelect = (team: "Red" | "Blue") => {
+    const teamColor = team === "Red" ? "#ffcccc" : "#cce5ff";
+
+    // Update teamColors and track the last updated team
     setTeamColors((prev) => ({
       ...prev,
-      [selectedLetter]: team === "Red" ? "#ffcccc" : "#cce5ff", // Light red or blue
+      [selectedLetter]: teamColor,
     }));
+    setLastUpdatedTeam(teamColor); // Track the last team that made a move
     setSelectedLetter(""); // Deselect the current letter
     setShowAnswer(false); // Reset answer visibility
-
-    // Check if the team has won after each team selection
-    if (checkForWin(grid, teamColors, team === "Red" ? "#ffcccc" : "#cce5ff")) {
-      setWinner(`${team} Team Wins!`);
-    }
   };
+
+  // Check for a win after teamColors updates
+  useEffect(() => {
+    if (lastUpdatedTeam) {
+      if (checkForWin(grid, teamColors, lastUpdatedTeam)) {
+        setWinner(
+          lastUpdatedTeam === "#ffcccc" ? "Red Team Wins!" : "Blue Team Wins!"
+        );
+      }
+    }
+  }, [teamColors, grid, lastUpdatedTeam]); // Trigger whenever teamColors, grid, or lastUpdatedTeam changes
 
   // Handle new question selection
   const handleNewQuestion = () => {
@@ -169,7 +186,6 @@ export default function HostPage() {
       <GameInstructions />
 
       {/* Letter Grid */}
-
       <LetterGrid
         grid={grid}
         teamColors={teamColors}
