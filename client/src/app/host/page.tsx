@@ -168,17 +168,28 @@ export default function HostPage() {
 
   // Handle new question selection
   const handleNewQuestion = () => {
+    if (!availableQuestions.length) return; // No available questions
+
     const randomNewQuestion =
       availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
 
-    if (availableQuestions.length <= 1) {
-      setNewQuestionDisabled(true);
+    // Check if the selected question is the same as the current one
+    if (
+      currentQuestion &&
+      randomNewQuestion.question === currentQuestion.question
+    ) {
+      // If it's the same, recursively call handleNewQuestion until we get a different question
+      handleNewQuestion();
       return;
     }
 
     setCurrentQuestion(randomNewQuestion);
     setAvailableQuestions(questionMap[selectedLetter] || []);
     setShowAnswer(false); // Hide answer when selecting a new question
+
+    if (availableQuestions.length <= 1) {
+      setNewQuestionDisabled(true);
+    }
   };
 
   const currentQuestionAlreadyAnswered =
