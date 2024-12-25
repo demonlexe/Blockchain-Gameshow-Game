@@ -28,11 +28,6 @@ jobs:
           cd client
           npm run build
 
-      - name: Export the project
-        run: |
-          cd client
-          npm run deploy  # This runs `next export` to create the static files
-
   deploy:
     environment:
       name: github-pages
@@ -47,4 +42,3 @@ jobs:
         with:
           branch: gh-pages  # This is the branch where GitHub Pages will be deployed
           folder: client/out  # The 'out' directory will be in the 'client' folder
-
