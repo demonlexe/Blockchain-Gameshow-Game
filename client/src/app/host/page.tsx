@@ -218,7 +218,7 @@ export default function HostPage() {
         <div
           style={{
             textAlign: "center",
-            marginTop: "20px",
+            marginTop: "6rem",
             fontSize: "24px",
             fontWeight: "bold",
           }}
