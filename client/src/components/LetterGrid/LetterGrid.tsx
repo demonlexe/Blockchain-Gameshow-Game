@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import styles from "./styles.module.css";
 
 interface LetterGridProps {
   grid: string[][];
@@ -12,26 +12,31 @@ const LetterGrid: React.FC<LetterGridProps> = ({
   teamColors,
   handleLetterClick,
 }) => (
-  <div>
+  <div
+    style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+  >
     {grid.map((row, rowIndex) => (
-      <Row key={rowIndex} className="mb-2">
+      <div key={rowIndex} style={{ display: "flex", justifyContent: "center" }}>
         {row.map((letter, colIndex) => (
-          <Col
+          <div
             key={`${rowIndex}-${colIndex}`}
-            xs={2}
-            className="d-flex justify-content-center align-items-center border"
+            className={styles.hexagon}
             style={{
-              height: "50px",
               backgroundColor: teamColors[letter] || "#f9f9f9",
-              textAlign: "center",
               cursor: "pointer",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "60px", // Adjust the size of the hexagon
+              height: "60px",
+              margin: "3px", // Space between hexagons
             }}
             onClick={() => handleLetterClick(letter)}
           >
             <strong>{letter}</strong>
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     ))}
   </div>
 );
