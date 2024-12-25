@@ -53,6 +53,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          working-directory: client  # Ensure we work in the 'client' directory
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
