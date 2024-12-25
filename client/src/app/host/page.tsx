@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import questions from "@/mockdata/triviaQuestions";
+import GameInstructions from "@/components/GameInstructions";
+import LetterGrid from "@/components/LetterGrid";
+import QuestionSection from "@/components/QuestionSection";
 
 // Create a map of questions and answers for easy lookup
 const createQuestionMap = () => {
@@ -92,82 +95,25 @@ export default function HostPage() {
 
   return (
     <Container>
-      {/* Top Button */}
-      <Row className="mb-3">
-        <Col>
-          <Button>Hey!</Button>
-        </Col>
-      </Row>
+      {/* Game Instructions */}
+      <GameInstructions />
 
       {/* Letter Grid */}
-      {grid.map((row, rowIndex) => (
-        <Row key={rowIndex} className="mb-2">
-          {row.map((letter, colIndex) => (
-            <Col
-              key={`${rowIndex}-${colIndex}`}
-              xs={2} // 5 columns per row (12 / 5 ≈ 2)
-              className="d-flex justify-content-center align-items-center border"
-              style={{
-                height: "50px",
-                backgroundColor: teamColors[letter] || "#f9f9f9",
-                textAlign: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => handleLetterClick(letter)}
-            >
-              <strong>{letter}</strong>
-            </Col>
-          ))}
-        </Row>
-      ))}
+      <LetterGrid
+        grid={grid}
+        teamColors={teamColors}
+        handleLetterClick={handleLetterClick}
+      />
 
       {/* Display Question and Answer */}
-      {currentQuestion && (
-        <Row className="mt-4">
-          <Col>
-            <h5>
-              <strong>Question:</strong> {currentQuestion.question}
-            </h5>
-            {!showAnswer ? (
-              <Button variant="primary" onClick={() => setShowAnswer(true)}>
-                Show Answer
-              </Button>
-            ) : (
-              <>
-                <h5>
-                  <strong>Answer:</strong> {currentQuestion.answer}
-                </h5>
-                <Button
-                  variant="danger"
-                  className="me-2"
-                  onClick={() => handleTeamSelect("Red")}
-                >
-                  Red Team
-                </Button>
-                <Button
-                  variant="primary"
-                  className="me-2"
-                  onClick={() => handleTeamSelect("Blue")}
-                >
-                  Blue Team
-                </Button>
-                <Button
-                  variant="warning"
-                  onClick={handleNewQuestion}
-                  disabled={newQuestionDisabled}
-                >
-                  New Question
-                </Button>
-                {newQuestionDisabled && (
-                  <p style={{ color: "red" }}>
-                    No other questions available with this letter.
-                  </p>
-                )}
-              </>
-            )}
-          </Col>
-        </Row>
-      )}
+      <QuestionSection
+        currentQuestion={currentQuestion}
+        showAnswer={showAnswer}
+        handleShowAnswer={() => setShowAnswer(true)}
+        handleNewQuestion={handleNewQuestion}
+        newQuestionDisabled={newQuestionDisabled}
+        handleTeamSelect={handleTeamSelect}
+      />
     </Container>
   );
 }
