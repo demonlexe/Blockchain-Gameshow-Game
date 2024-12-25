@@ -19,13 +19,19 @@ jobs:
           node-version: '18'  # Adjust to your preferred Node.js version
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd client
+          npm install
 
       - name: Build the project
-        run: npm run build
+        run: |
+          cd client
+          npm run build
 
       - name: Export the project
-        run: npm run deploy  # This runs `next export` to create the static files
+        run: |
+          cd client
+          npm run deploy  # This runs `next export` to create the static files
 
   deploy:
     environment:
@@ -40,5 +46,5 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           branch: gh-pages  # This is the branch where GitHub Pages will be deployed
-          folder: out       # This is where `next export` creates the static files
+          folder: client/out  # The 'out' directory will be in the 'client' folder
 
