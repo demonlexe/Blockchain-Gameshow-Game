@@ -84,6 +84,8 @@ jobs:
       - name: Export static site with Next.js
         run: |
           cd client
+          # Ensure the next package is installed locally
+          npm install next --save-dev
           next export # This will create the "out" directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
