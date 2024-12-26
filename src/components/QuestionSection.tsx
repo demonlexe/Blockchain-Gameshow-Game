@@ -23,10 +23,12 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
 
   const handleCheckAnswer = () => {
     if (!currentQuestion) return;
-    setIsAnswerCorrect(
-      userAnswer.trim().toLowerCase() ===
-        currentQuestion.answer.trim().toLowerCase()
-    );
+    // check for substring match at start
+    const isCorrect = currentQuestion.answer
+      .trim()
+      .toLowerCase()
+      .search(userAnswer.trim().toLowerCase());
+    setIsAnswerCorrect(isCorrect == 0);
   };
 
   useEffect(() => {
@@ -66,7 +68,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                 {isAnswerCorrect !== null && (
                   <p
                     style={{
-                      color: isAnswerCorrect ? "green" : "red",
+                      color: "red",
                       position: "absolute",
                       top: "-2rem",
                       left: "0",
@@ -107,6 +109,18 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
               </div>
             ) : (
               <>
+                {isAnswerCorrect && (
+                  <p
+                    style={{
+                      color: "green",
+                      position: "absolute",
+                      top: "-2rem",
+                      left: "0",
+                    }}
+                  >
+                    Correct!
+                  </p>
+                )}
                 <h5>
                   <strong>Answer:</strong> {currentQuestion.answer}
                 </h5>
