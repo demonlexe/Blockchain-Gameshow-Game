@@ -238,6 +238,126 @@ const questions: Array<{
       "What country features the 355-foot Victoria Falls and is also known for their hyperinflation crisis?",
     answer: "Zimbabwe",
   },
+  {
+    question: "Who are famous puppet characters created by Jim Henson?",
+    answer: "Muppets",
+  },
+  {
+    question: "What was the first manned moon landing mission?",
+    answer: "Apollo 11",
+  },
+  { question: "What is a famous iron tower in Paris?", answer: "Eiffel Tower" },
+  {
+    question: "What is a historic fortification in China?",
+    answer: "Great Wall of China",
+  },
+  {
+    question: "What is a famous dinosaur-themed movie?",
+    answer: "Jurassic Park",
+  },
+  {
+    question: "What is the tallest mountain in the world?",
+    answer: "Mount Everest",
+  },
+  { question: "Who wrote 'Romeo and Juliet'?", answer: "Shakespeare" },
+  {
+    question: "What was the name of the famous sunken ship from 1912?",
+    answer: "Titanic",
+  },
+  { question: "Who founded Disneyland?", answer: "Walt Disney" },
+  {
+    question: "What was a major global conflict from 1939 to 1945?",
+    answer: "World War II",
+  },
+  {
+    question: "Who is the boy wizard in J.K. Rowling's books?",
+    answer: "Harry Potter",
+  },
+  {
+    question: "Who is the famous physicist known for the theory of relativity?",
+    answer: "Albert Einstein",
+  },
+  { question: "What is the capital city of Italy?", answer: "Rome" },
+  {
+    question: "Who was the last active ruler of Ancient Egypt?",
+    answer: "Cleopatra",
+  },
+  { question: "Who painted the 'Mona Lisa'?", answer: "Leonardo da Vinci" },
+  {
+    question: "What is the largest rainforest in the world?",
+    answer: "Amazon Rainforest",
+  },
+  {
+    question: "Where did a nuclear disaster occur in 1986?",
+    answer: "Chernobyl",
+  },
+  {
+    question: "What is the famous statue in New York Harbor?",
+    answer: "Statue of Liberty",
+  },
+  {
+    question: "What are the ancient Egyptian tomb structures called?",
+    answer: "Pyramids of Giza",
+  },
+  {
+    question: "Who was the French military leader who became emperor?",
+    answer: "Napoleon Bonaparte",
+  },
+  {
+    question: "What is the smallest independent state in the world?",
+    answer: "Vatican City",
+  },
+  {
+    question: "Who delivered the 'I Have a Dream' speech?",
+    answer: "Martin Luther King Jr.",
+  },
+  {
+    question: "What ancient stone circle is located in England?",
+    answer: "Stonehenge",
+  },
+  {
+    question: "Who was the ancient Macedonian king and conqueror?",
+    answer: "Alexander the Great",
+  },
+  {
+    question: "What is the famous painting housed in the Louvre?",
+    answer: "Mona Lisa",
+  },
+  {
+    question: "Who was the South African leader who fought against apartheid?",
+    answer: "Nelson Mandela",
+  },
+  {
+    question: "What is the famous ancient amphitheater in Rome?",
+    answer: "Colosseum",
+  },
+  {
+    question: "What theory explains the origin of the universe?",
+    answer: "Big Bang Theory",
+  },
+  {
+    question:
+      "Who were the aviation pioneers who achieved the first powered flight?",
+    answer: "Wright Brothers",
+  },
+  {
+    question: "What is the largest desert in the world?",
+    answer: "Sahara Desert",
+  },
+  {
+    question: "Who was the first President of the United States?",
+    answer: "George Washington",
+  },
+  { question: "What is the longest river in the world?", answer: "Nile River" },
+  { question: "Who developed the theory of gravity?", answer: "Isaac Newton" },
+  {
+    question: "What is the most spoken language in the world?",
+    answer: "Mandarin Chinese",
+  },
+  { question: "Who painted 'Starry Night'?", answer: "Vincent van Gogh" },
+  { question: "What is the largest ocean on Earth?", answer: "Pacific Ocean" },
+  { question: "Who discovered penicillin?", answer: "Alexander Fleming" },
+  { question: "What is the chemical symbol for gold?", answer: "Au" },
 ];
 
 export default questions;
