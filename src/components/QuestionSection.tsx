@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row, Form } from "react-bootstrap";
 
 interface QuestionSectionProps {
@@ -28,6 +28,11 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
         currentQuestion.answer.trim().toLowerCase()
     );
   };
+
+  useEffect(() => {
+    setUserAnswer("");
+    setIsAnswerCorrect(null);
+  }, [currentQuestion]);
 
   return (
     <Row
