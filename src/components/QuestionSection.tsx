@@ -98,6 +98,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                       value={userAnswer}
                       onChange={(e) => setUserAnswer(e.target.value)}
                       onKeyDown={handleKeyDown} // Added keydown event
+                      autoComplete="off" // Prevents browser from saving the input
                     />
                   </Form.Group>
                   <Button
