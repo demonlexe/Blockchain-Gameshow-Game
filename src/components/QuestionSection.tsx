@@ -34,10 +34,6 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
           ? userAnswer.trim().length > 1
           : true)
     );
-
-    setTimeout(() => {
-      setIsAnswerCorrect(null);
-    }, 3000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -100,7 +96,10 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                       type="text"
                       placeholder="Type your answer here"
                       value={userAnswer}
-                      onChange={(e) => setUserAnswer(e.target.value)}
+                      onChange={(e) => {
+                        setUserAnswer(e.target.value);
+                        setIsAnswerCorrect(null);
+                      }}
                       onKeyDown={handleKeyDown} // Added keydown event
                       autoComplete="off" // Prevents browser from saving the input
                     />
