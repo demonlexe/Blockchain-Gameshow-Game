@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Row, Form } from "react-bootstrap";
 
 interface QuestionSectionProps {
   currentQuestion: { question: string; answer: string } | null;
@@ -17,62 +17,132 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
   handleNewQuestion,
   newQuestionDisabled,
   handleTeamSelect,
-}) => (
-  <Row style={{ marginTop: "8rem" }}>
-    <Col
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+}) => {
+  const [userAnswer, setUserAnswer] = useState("");
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+
+  const handleCheckAnswer = () => {
+    if (!currentQuestion) return;
+    setIsAnswerCorrect(
+      userAnswer.trim().toLowerCase() ===
+        currentQuestion.answer.trim().toLowerCase()
+    );
+  };
+
+  return (
+    <Row
+      style={{
+        marginTop: "8rem",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
-      {currentQuestion && (
-        <>
-          <h5>
-            <strong>Question:</strong> {currentQuestion.question}
-          </h5>
-          {!showAnswer ? (
-            <Button variant="primary" onClick={handleShowAnswer} size="lg">
-              Show Answer
-            </Button>
-          ) : (
-            <>
-              <h5>
-                <strong>Answer:</strong> {currentQuestion.answer}
-              </h5>
-              <div style={{ marginTop: "20px" }}>
-                <Button
-                  variant="danger"
-                  className="me-4"
-                  size="lg"
-                  onClick={() => handleTeamSelect("Red")}
-                >
-                  Red Team
-                </Button>
-                <Button
-                  variant="primary"
-                  className="me-4"
-                  size="lg"
-                  onClick={() => handleTeamSelect("Blue")}
-                >
-                  Blue Team
-                </Button>
-                <Button
-                  variant="warning"
-                  size="lg"
-                  onClick={handleNewQuestion}
-                  disabled={newQuestionDisabled}
-                >
-                  New Question
-                </Button>
-                {newQuestionDisabled && (
-                  <p style={{ color: "red" }}>
-                    No other questions available with this letter.
+      <Col
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          maxWidth: "50%",
+        }}
+      >
+        {currentQuestion && (
+          <>
+            <h5>
+              <strong>Question:</strong> {currentQuestion.question}
+            </h5>
+
+            {!showAnswer && !isAnswerCorrect ? (
+              <div
+                className="d-flex flex-column align-items-center mt-5"
+                style={{ position: "relative" }}
+              >
+                {isAnswerCorrect !== null && (
+                  <p
+                    style={{
+                      color: isAnswerCorrect ? "green" : "red",
+                      position: "absolute",
+                      top: "-2rem",
+                      left: "0",
+                    }}
+                  >
+                    {!isAnswerCorrect &&
+                      "Incorrect. Try again or show the answer."}
                   </p>
                 )}
+
+                <div
+                  className="d-flex flex-row gap-3 align-items-center
+                "
+                >
+                  <Form.Group controlId="userAnswer">
+                    <Form.Control
+                      type="text"
+                      placeholder="Type your answer here"
+                      value={userAnswer}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button
+                    size="lg"
+                    variant="success"
+                    onClick={handleCheckAnswer}
+                  >
+                    Check Answer
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={handleShowAnswer}
+                    size="lg"
+                  >
+                    Show Answer
+                  </Button>
+                </div>
               </div>
-            </>
-          )}
-        </>
-      )}
-    </Col>
-  </Row>
-);
+            ) : (
+              <>
+                <h5>
+                  <strong>Answer:</strong> {currentQuestion.answer}
+                </h5>
+                <div style={{ marginTop: "20px" }}>
+                  <Button
+                    variant="danger"
+                    className="me-4"
+                    size="lg"
+                    onClick={() => handleTeamSelect("Red")}
+                  >
+                    Red Team
+                  </Button>
+                  <Button
+                    variant="primary"
+                    className="me-4"
+                    size="lg"
+                    onClick={() => handleTeamSelect("Blue")}
+                  >
+                    Blue Team
+                  </Button>
+                  <Button
+                    variant="warning"
+                    size="lg"
+                    onClick={handleNewQuestion}
+                    disabled={newQuestionDisabled}
+                  >
+                    New Question
+                  </Button>
+                  {newQuestionDisabled && (
+                    <p style={{ color: "red" }}>
+                      No other questions available with this letter.
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </Col>
+    </Row>
+  );
+};
 
 export default QuestionSection;
