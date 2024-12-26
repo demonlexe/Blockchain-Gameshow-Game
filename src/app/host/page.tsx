@@ -172,12 +172,15 @@ export default function HostPage() {
     [availableQuestions, currentQuestion, questionMap, selectedLetter]
   );
   useEffect(() => {
+    // if selectedLetter is already set, don't call handleNewQuestion
+    if (!selectedLetter) return;
+    if (teamColors[selectedLetter] !== undefined) return;
     // only call handleNewQuestion when the letter changes
     if (previousLetter && selectedLetter === previousLetter) return;
 
     handleNewQuestion();
     setPreviousLetter(selectedLetter);
-  }, [handleNewQuestion, previousLetter, selectedLetter]);
+  }, [handleNewQuestion, previousLetter, selectedLetter, teamColors]);
 
   // Handle letter click
   const handleLetterClick = (letter: string) => {
