@@ -62,7 +62,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          maxWidth: "60%",
+          maxWidth: "75%",
           position: "relative",
         }}
       >
