@@ -358,6 +358,65 @@ const questions: Array<{
   { question: "What is the largest ocean on Earth?", answer: "Pacific Ocean" },
   { question: "Who discovered penicillin?", answer: "Alexander Fleming" },
   { question: "What is the chemical symbol for gold?", answer: "Au" },
+  {
+    question: "Which country has the highest life expectancy? (as of 2024)",
+    answer: "Monaco",
+  },
+  {
+    question: "What is the most common surname in the United States?",
+    answer: "Smith",
+  },
+  {
+    question: "Who was the Ancient Greek God of the Sun?",
+    answer: "Apollo",
+  },
+  {
+    question: "What is the 4th letter of the Greek alphabet?",
+    answer: "Delta",
+  },
+  {
+    question: "What company was initially known as 'Blue Ribbon Sports'?",
+    answer: "Nike",
+  },
+  {
+    question:
+      "What art form is described as 'decorative handwriting or handwritten lettering'?",
+    answer: "Calligraphy",
+  },
+  {
+    question: "What software company is headquartered in Redmond, Washington?",
+    answer: "Microsoft",
+  },
+  {
+    question: "What is acrophobia a fear of?",
+    answer: "Heights",
+  },
+  {
+    question: "December 26 is known by what names in Ireland?",
+    answer: "Saint Stephen's Day",
+  },
+  {
+    question: "What phone company produced the 3310?",
+    answer: "Nokia",
+  },
+  {
+    question: "What is the world’s largest retailer?",
+    answer: "Walmart",
+  },
+  {
+    question: "Which day of the week does the Jewish Sabbath begin?",
+    answer: "Friday",
+  },
+  {
+    question:
+      "What is a word, phrase, number, or other sequence of characters that reads the same backward as forward?",
+    answer: "Palindrome",
+  },
+  {
+    question:
+      "What is the name of the Chinese philosophical system that emphasizes harmony with nature?",
+    answer: "Taoism",
+  },
 ];
 
 export default questions;
