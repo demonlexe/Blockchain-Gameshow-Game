@@ -28,7 +28,12 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
       .trim()
       .toLowerCase()
       .search(userAnswer.trim().toLowerCase());
-    setIsAnswerCorrect(isCorrect == 0);
+    setIsAnswerCorrect(
+      isCorrect == 0 &&
+        (currentQuestion.answer.trim().length > 1
+          ? userAnswer.trim().length > 1
+          : true)
+    );
   };
 
   useEffect(() => {
@@ -52,6 +57,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
           flexDirection: "column",
           alignItems: "center",
           maxWidth: "50%",
+          position: "relative",
         }}
       >
         {currentQuestion && (
@@ -61,17 +67,13 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
             </h5>
 
             {!showAnswer && !isAnswerCorrect ? (
-              <div
-                className="d-flex flex-column align-items-center mt-5"
-                style={{ position: "relative" }}
-              >
+              <div className="d-flex flex-column align-items-center mt-5">
                 {isAnswerCorrect !== null && (
                   <p
                     style={{
                       color: "red",
                       position: "absolute",
                       top: "-2rem",
-                      left: "0",
                     }}
                   >
                     {!isAnswerCorrect &&
@@ -115,7 +117,6 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                       color: "green",
                       position: "absolute",
                       top: "-2rem",
-                      left: "0",
                     }}
                   >
                     Correct!
