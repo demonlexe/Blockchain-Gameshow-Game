@@ -36,6 +36,12 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
     );
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleCheckAnswer();
+    }
+  };
+
   useEffect(() => {
     setUserAnswer("");
     setIsAnswerCorrect(null);
@@ -91,6 +97,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                       placeholder="Type your answer here"
                       value={userAnswer}
                       onChange={(e) => setUserAnswer(e.target.value)}
+                      onKeyDown={handleKeyDown} // Added keydown event
                     />
                   </Form.Group>
                   <Button
