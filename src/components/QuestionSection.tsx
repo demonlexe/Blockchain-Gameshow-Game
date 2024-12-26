@@ -34,6 +34,10 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
           ? userAnswer.trim().length > 1
           : true)
     );
+
+    setTimeout(() => {
+      setIsAnswerCorrect(null);
+    }, 3000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
