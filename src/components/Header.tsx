@@ -34,10 +34,10 @@ export default function Header() {
         >
           <Nav className="align-items-center">
             <Nav.Link
-              href="/Blockchain-Gameshow-Game/host"
+              href="/host"
               className="mx-2"
-              style={{ color: getLinkColor("/Blockchain-Gameshow-Game/host") }}
-              onClick={() => router.push("/Blockchain-Gameshow-Game/host")}
+              style={{ color: getLinkColor("host") }}
+              onClick={() => router.push("/host")}
             >
               Host Page
             </Nav.Link>
