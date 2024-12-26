@@ -62,15 +62,35 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          maxWidth: "50%",
+          maxWidth: "60%",
           position: "relative",
         }}
       >
         {currentQuestion && (
           <>
-            <h5>
-              <strong>Question:</strong> {currentQuestion.question}
-            </h5>
+            <div className="d-flex flex-row align-items-start gap-3">
+              <h5 style={{ flex: 5 }}>
+                <strong>Question:</strong> {currentQuestion.question}
+              </h5>
+
+              <Button
+                variant="warning"
+                onClick={handleNewQuestion}
+                disabled={newQuestionDisabled}
+                style={{
+                  flex: 1,
+                  minWidth: "140px",
+                }}
+              >
+                New Question
+              </Button>
+
+              {newQuestionDisabled && (
+                <p style={{ color: "red" }}>
+                  No other questions available with this letter.
+                </p>
+              )}
+            </div>
 
             {!showAnswer && !isAnswerCorrect ? (
               <div className="d-flex flex-column align-items-center mt-5">
@@ -153,19 +173,6 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
                   >
                     Blue Team
                   </Button>
-                  <Button
-                    variant="warning"
-                    size="lg"
-                    onClick={handleNewQuestion}
-                    disabled={newQuestionDisabled}
-                  >
-                    New Question
-                  </Button>
-                  {newQuestionDisabled && (
-                    <p style={{ color: "red" }}>
-                      No other questions available with this letter.
-                    </p>
-                  )}
                 </div>
               </>
             )}
