@@ -417,6 +417,111 @@ const questions: Array<{
       "What is the name of the Chinese philosophical system that emphasizes harmony with nature?",
     answer: "Taoism",
   },
+  {
+    question: "Where would you be if you were standing on the Spanish Steps?",
+    answer: "Rome",
+  },
+  {
+    question: "What city is known as 'The Eternal City'?",
+    answer: "Rome",
+  },
+  {
+    question: "In which country would you find Mount Kilimanjaro?",
+    answer: "Tanzania",
+  },
+  {
+    question:
+      "True or false: Halloween originated as an ancient Irish festival.",
+    answer: "True",
+  },
+  {
+    question: "What is the largest Spanish-speaking city in the world?",
+    answer: "Mexico City",
+  },
+  {
+    question: "Which country has the most islands?",
+    answer: "Sweden",
+  },
+  {
+    question: "In which U.S. state is the country's busiest airport located?",
+    answer: "Georgia",
+  },
+  {
+    question: "Which is the only continent with land in all four hemispheres?",
+    answer: "Africa",
+  },
+  {
+    question: "Which river flows through the Grand Canyon?",
+    answer: "Colorado River",
+  },
+  {
+    question: "Where is Angel Falls, the world’s largest waterfall, located?",
+    answer: "Venezuela",
+  },
+  {
+    question: "What is the state capital of New York?",
+    answer: "Albany",
+  },
+  {
+    question: "On which continent would you find the world’s largest desert?",
+    answer: "Antarctica",
+  },
+  {
+    question: "What is the capital of Ireland?",
+    answer: "Dublin",
+  },
+  {
+    question: "What is the smallest U.S. state by area?",
+    answer: "Rhode Island",
+  },
+  {
+    question: "What is the tallest type of tree?",
+    answer: "Redwood",
+  },
+  {
+    question: "True or false: Holland is a region in The Netherlands?",
+    answer: "True",
+  },
+  {
+    question: "What is the biggest of the five Great Lakes?",
+    answer: "Superior",
+  },
+  {
+    question: "Fill in the blanks: The capital of Bulgaria is _ofi_.",
+    answer: "Sofia",
+  },
+  {
+    question: "What is the capital of Canada?",
+    answer: "Ottawa",
+  },
+  {
+    question: "In what capital would you find The Little Mermaid statue?",
+    answer: "Copenhagen",
+  },
+  {
+    question: "On which continent would you find the city of Baku?",
+    answer: "Asia",
+  },
+  {
+    question: "What is the only flag that does not have four sides?",
+    answer: "Nepal",
+  },
+  {
+    question: "What country features a shipwreck on its national flag?",
+    answer: "Bermuda",
+  },
+  {
+    question: "In what country is the Chernobyl nuclear plant located?",
+    answer: "Ukraine",
+  },
+  {
+    question: "Which is the only sea without any coastlines?",
+    answer: "Sargasso Sea",
+  },
+  {
+    question: "What mountain range separates Europe and Asia?",
+    answer: "Ural Mountains",
+  },
 ];
 
 export default questions;
