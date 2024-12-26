@@ -6,12 +6,14 @@ interface LetterGridProps {
   grid: string[][];
   teamColors: Record<string, string>;
   handleLetterClick: (letter: string) => void;
+  selectedLetter: string;
 }
 
 const LetterGrid: React.FC<LetterGridProps> = ({
   grid,
   teamColors,
   handleLetterClick,
+  selectedLetter,
 }) => (
   <div
     style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -86,7 +88,11 @@ const LetterGrid: React.FC<LetterGridProps> = ({
               key={`${rowIndex}-${colIndex}`}
               className={styles.hexagon}
               style={{
-                backgroundColor: teamColors[letter] || "#f9f9f9",
+                backgroundColor: teamColors[letter]
+                  ? teamColors[letter]
+                  : selectedLetter === letter
+                  ? "#dedede"
+                  : "#f9f9f9",
                 cursor: "pointer",
                 display: "flex",
                 justifyContent: "center",

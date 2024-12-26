@@ -225,6 +225,7 @@ export default function HostPage() {
       <LetterGrid
         grid={grid}
         teamColors={teamColors}
+        selectedLetter={selectedLetter}
         handleLetterClick={handleLetterClick}
       />
 
