@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Container } from "react-bootstrap";
 import questions from "@/mockdata/triviaQuestions";
 import LetterGrid from "@/components/LetterGrid";
@@ -102,6 +102,7 @@ const checkForWin = (
 
 export default function HostPage() {
   const [grid, setGrid] = useState<string[][]>([]);
+  const [previousLetter, setPreviousLetter] = useState<string | null>(null);
   const [selectedLetter, setSelectedLetter] = useState<string>("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [teamColors, setTeamColors] = useState<Record<string, string>>({});
@@ -140,13 +141,51 @@ export default function HostPage() {
     setGrid(generateGrid());
   }, [questionMap]);
 
+  const handleNewQuestion = useCallback(
+    // Handle new question selection
+    () => {
+      if (!availableQuestions.length) return; // No available questions
+
+      const randomNewQuestion =
+        availableQuestions[
+          Math.floor(Math.random() * availableQuestions.length)
+        ];
+
+      // Check if the selected question is the same as the current one
+      if (
+        currentQuestion &&
+        randomNewQuestion.question === currentQuestion.question
+      ) {
+        // If it's the same, recursively call handleNewQuestion until we get a different question
+        handleNewQuestion();
+        return;
+      }
+
+      setCurrentQuestion(randomNewQuestion);
+      setAvailableQuestions(questionMap[selectedLetter] || []);
+      setShowAnswer(false); // Hide answer when selecting a new question
+
+      if (availableQuestions.length <= 1) {
+        setNewQuestionDisabled(true);
+      }
+    },
+    [availableQuestions, currentQuestion, questionMap, selectedLetter]
+  );
+  useEffect(() => {
+    // only call handleNewQuestion when the letter changes
+    if (previousLetter && selectedLetter === previousLetter) return;
+
+    handleNewQuestion();
+    setPreviousLetter(selectedLetter);
+  }, [handleNewQuestion, previousLetter, selectedLetter]);
+
   // Handle letter click
   const handleLetterClick = (letter: string) => {
+    setPreviousLetter(selectedLetter);
     setSelectedLetter(letter);
     setShowAnswer(false); // Reset answer visibility when a new letter is clicked
     setAvailableQuestions(questionMap[letter] || []);
     setNewQuestionDisabled(false); // Enable "New Question" button
-    setCurrentQuestion(questionMap[letter]?.[0] || null); // Set the first question for the selected letter
   };
 
   // Handle team selection
@@ -159,6 +198,7 @@ export default function HostPage() {
       [selectedLetter]: teamColor,
     }));
     setLastUpdatedTeam(teamColor); // Track the last team that made a move
+    setPreviousLetter(null);
     setSelectedLetter(""); // Deselect the current letter
     setShowAnswer(false); // Reset answer visibility
     setCurrentQuestion(null); // Reset current question
@@ -174,32 +214,6 @@ export default function HostPage() {
       }
     }
   }, [teamColors, grid, lastUpdatedTeam]); // Trigger whenever teamColors, grid, or lastUpdatedTeam changes
-
-  // Handle new question selection
-  const handleNewQuestion = () => {
-    if (!availableQuestions.length) return; // No available questions
-
-    const randomNewQuestion =
-      availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-
-    // Check if the selected question is the same as the current one
-    if (
-      currentQuestion &&
-      randomNewQuestion.question === currentQuestion.question
-    ) {
-      // If it's the same, recursively call handleNewQuestion until we get a different question
-      handleNewQuestion();
-      return;
-    }
-
-    setCurrentQuestion(randomNewQuestion);
-    setAvailableQuestions(questionMap[selectedLetter] || []);
-    setShowAnswer(false); // Hide answer when selecting a new question
-
-    if (availableQuestions.length <= 1) {
-      setNewQuestionDisabled(true);
-    }
-  };
 
   const currentQuestionAlreadyAnswered =
     teamColors[selectedLetter] !== undefined;
