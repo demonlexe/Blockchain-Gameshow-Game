@@ -17,7 +17,10 @@ export default function Header() {
         className="bg-dark navbar-dark"
       >
         {/* Left-most part: Logo and Title */}
-        <Navbar.Brand href="/" className="d-flex align-items-center">
+        <Navbar.Brand
+          href="/Blockchain-Gameshow-Game"
+          className="d-flex align-items-center"
+        >
           <span
             className="text-white d-none d-md-block"
             style={{ fontSize: "1.2rem" }}
