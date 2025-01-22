@@ -1,9 +1,9 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Nav, Navbar } from "react-bootstrap";
+import Link from "next/link";
 
 export default function Header() {
-  const router = useRouter();
   const pathname = usePathname();
   // Function to determine the color based on the active state
   const getLinkColor = (slug: string) => {
@@ -17,13 +17,14 @@ export default function Header() {
         className="bg-dark navbar-dark"
       >
         {/* Left-most part: Logo and Title */}
-        <Navbar.Brand href={`/`} className="d-flex align-items-center">
-          <span
-            className="text-white d-none d-md-block"
+        <Navbar.Brand className="">
+          <Link
+            href={`/`}
+            className="d-flex align-items-center nav-link text-white d-none d-md-block"
             style={{ fontSize: "1.2rem" }}
           >
             Blockchain Gameshow
-          </span>
+          </Link>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarResponsive" />
@@ -33,14 +34,13 @@ export default function Header() {
           className="justify-content-center"
         >
           <Nav className="align-items-center">
-            <Nav.Link
-              href={`/host`}
-              className="mx-2"
+            <Link
+              className="nav-link mx-2"
               style={{ color: getLinkColor("/host") }}
-              onClick={() => router.push("/host")}
+              href={`/host`}
             >
               Host Page
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
