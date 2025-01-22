@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Container } from "react-bootstrap";
-import questions from "@/mockdata/triviaQuestions";
+import triviaQuestions from "@/mockdata/triviaQuestions";
 import LetterGrid from "@/components/LetterGrid";
 import QuestionSection from "@/components/QuestionSection";
 
@@ -10,13 +10,17 @@ import QuestionSection from "@/components/QuestionSection";
 const createQuestionMap = () => {
   const questionMap: Record<string, { question: string; answer: string }[]> =
     {};
-  questions.forEach((q) => {
-    const letter = q.answer.charAt(0).toUpperCase();
+  // iterate questions, which is a record<string, string>, where key is answer and value is question
+  for (const [answer, question] of Object.entries(triviaQuestions)) {
+    // get the first letter of the answer, convert it to uppercase
+    const letter = answer.charAt(0).toUpperCase();
+    // if the letter is not in the questionMap, create an empty array
     if (!questionMap[letter]) {
       questionMap[letter] = [];
     }
-    questionMap[letter].push({ question: q.question, answer: q.answer });
-  });
+    // push the question and answer to the questionMap
+    questionMap[letter].push({ question, answer });
+  }
   return questionMap;
 };
 
