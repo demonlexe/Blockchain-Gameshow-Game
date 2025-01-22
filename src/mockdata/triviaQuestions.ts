@@ -233,6 +233,20 @@ const questions: Record<string, string> = {
   Mars: "The Roman God of War inspired the name of which planet?",
   Ra: "What was the name of the Egyptian God of the Sun?",
   Jackal: "Anubis, the God of Death, had the head of a…",
+  France: "What country gave the USA the Statue of Liberty?",
+  "Atlantic Ocean": "Where is the Bermuda Triangle located?",
+  Mercury: "Which planet is closest to the earth?",
+  "West Wing": "Where is the Oval Office located in the White House?",
+  Orange:
+    "A ‘black box’ records the performance and condition of an aircraft in flight. What color is the ‘black box’?",
+  Dentist: "What kind of doctor invented cotton candy?",
+  Wisconsin:
+    "What state banned Margarine for 72 years to protect their dairy farmers?",
+  Pigeon:
+    "What animal was successfully trained to tell the difference between Monet and Picasso?",
+  Pigs: "What animal is constitutionally protected in Florida while pregnant?",
+  Urine: "Lobsters communicate with _____.",
+  Duck: "Cartoonist Gary Larson illustrated a satirical comic about a made-up phobia called anatidaephobia, which is fear that a ___ may be watching you",
 };
 
 export default questions;
