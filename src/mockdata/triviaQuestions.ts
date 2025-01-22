@@ -147,7 +147,6 @@ const questions: Record<string, string> = {
     "What is a word, phrase, number, or other sequence of characters that reads the same backward as forward?",
   Taoism:
     "What is the name of the Chinese philosophical system that emphasizes harmony with nature?",
-  "The Eternal City": "What city is known as 'The Eternal City'?",
   Tanzania: "In which country would you find Mount Kilimanjaro?",
   True: "True or false: Halloween originated as an ancient Irish festival.",
   "Mexico City": "What is the largest Spanish-speaking city in the world?",
@@ -173,6 +172,67 @@ const questions: Record<string, string> = {
   Ukraine: "In what country is the Chernobyl nuclear plant located?",
   "Sargasso Sea": "Which is the only sea without any coastlines?",
   "Ural Mountains": "What mountain range separates Europe and Asia?",
+  Prunes: "What is the common name for dried plums?",
+  Maize: "What other name does “corn” go by?",
+  Chickpeas: "What’s the primary ingredient in hummus?",
+  Brazil: "Which country produces the most coffee in the world?",
+  China: "Which country invented tea?",
+  Vodka: "Which kind of alcohol is Russia notoriously known for?",
+  Paella: "What is the national dish of Spain?",
+  Germany: "Which European nation was said to invent hot dogs?",
+  Italy: "Which country is responsible for giving us pizza and pasta?",
+  "Rice noodles": "What is the main ingredient in the Vietnamese soup pho?",
+  Tiramisu:
+    "What is the name of the Italian dessert made with coffee-soaked ladyfingers and mascarpone cheese?",
+  Tempura:
+    "This Japanese dish consists of battered and fried seafood or vegetables.",
+  Switzerland:
+    "Which country is famous for its chocolate and is home to brands like Lindt and Toblerone?",
+  Heart: "Which organ has four chambers?",
+  Leg: "In which body part can you find the femur?",
+  Skin: "What is your body’s largest organ?",
+  Neurons: "What kind of cells are found in the brain?",
+  "Knee cap": "Which bone are babies born without?",
+  Calcium: "Which element is said to keep bones strong?",
+  Chile:
+    "What is the name of the thin and long country that spans more than half of the western coast of South America?",
+  Alaska: "Which American state is the largest (by area)?",
+  "Canada and the USA":
+    "Which two countries share the longest international border?",
+  "New Zealand": "Wellington is the capital of which country?",
+  Nile: "What is the name of the world’s longest river?",
+  Agra: "Which city in India would you find the Taj Mahal in?",
+  Sicily: "What is the largest island in the Mediterranean Sea?",
+  Rising: "Japan is known as the Land of the _____ Sun?",
+  Uganda: "Which African country is known as the “Pearl of Africa”?",
+  "Yangtze River": "Which Asian river is considered the longest?",
+  Pharaohs: "By what name were the Egyptian kings/rulers known?",
+  Three: "How many Pyramids of Giza were made?",
+  Gaul: "Where did the Franks settle after defeating the Romans?",
+  Catholicism: "Which religion dominated the Middle Ages?",
+  Austria: "In which country Adolph Hitler was born?",
+  "Joseph Stalin":
+    "Who was the leader of the Soviet Union during World War II?",
+  Mayflower:
+    "What was the name of the ship that brought the Pilgrims to America in 1620?",
+  "N’ SYNC":
+    "What was the name of the group Justin Timberlake used to be part of?",
+  "Led Zeppelin": "What was the name of the rock band formed by Jimmy Page?",
+  Australia: "Which country did AC/DC originate in?",
+  Country: "What genre of music did Taylor Swift start in?",
+  "Boy George":
+    "Who was the lead singer of the iconic ‘80s band, Culture Club?",
+  Ten: "How many Grammys does John Legend have?",
+  "Spice Girls": "Which British girl group had a member by the name of Mel B?",
+  "Michael Jackson":
+    "Who is often referred to as the “King of Pop” and is known for iconic hits like “Thriller” and “Billie Jean”?",
+  Achilles: "Which warrior’s weakness was their heel?",
+  Hermes: "Who was the messenger of the gods?",
+  Valhalla: "What’s the name of the paradise warriors go to after death?",
+  "She-wolf": "Romulus and Remus were raised by what animal?",
+  Mars: "The Roman God of War inspired the name of which planet?",
+  Ra: "What was the name of the Egyptian God of the Sun?",
+  Jackal: "Anubis, the God of Death, had the head of a…",
 };
 
 export default questions;
