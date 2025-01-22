@@ -10,17 +10,15 @@ function getBasePath() {
     basePath = ProdBasePath;
   }
 
+  console.log("Base path is: ", basePath);
   return basePath;
 }
 
 const nextConfig: NextConfig = {
   /* config options here */
   output: "export",
-  assetPrefix: getBasePath(),
 
-  publicRuntimeConfig: {
-    basePath: getBasePath(),
-  },
+  basePath: getBasePath(),
 };
 
 export default nextConfig;

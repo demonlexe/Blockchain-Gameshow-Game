@@ -1,8 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { Nav, Navbar } from "react-bootstrap";
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
 
 export default function Header() {
   const router = useRouter();
@@ -19,10 +17,7 @@ export default function Header() {
         className="bg-dark navbar-dark"
       >
         {/* Left-most part: Logo and Title */}
-        <Navbar.Brand
-          href={`${publicRuntimeConfig.basePath || ""}/`}
-          className="d-flex align-items-center"
-        >
+        <Navbar.Brand href={`/`} className="d-flex align-items-center">
           <span
             className="text-white d-none d-md-block"
             style={{ fontSize: "1.2rem" }}
@@ -39,7 +34,7 @@ export default function Header() {
         >
           <Nav className="align-items-center">
             <Nav.Link
-              href={`${publicRuntimeConfig.basePath || ""}/host`}
+              href={`/host`}
               className="mx-2"
               style={{ color: getLinkColor("/host") }}
               onClick={() => router.push("/host")}
