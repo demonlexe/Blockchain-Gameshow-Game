@@ -17,10 +17,7 @@ export default function Header() {
         className="bg-dark navbar-dark"
       >
         {/* Left-most part: Logo and Title */}
-        <Navbar.Brand
-          href="/Blockchain-Gameshow-Game"
-          className="d-flex align-items-center"
-        >
+        <Navbar.Brand href="/" className="d-flex align-items-center">
           <span
             className="text-white d-none d-md-block"
             style={{ fontSize: "1.2rem" }}
@@ -37,10 +34,10 @@ export default function Header() {
         >
           <Nav className="align-items-center">
             <Nav.Link
-              href="/Blockchain-Gameshow-Game/host"
+              href="/host"
               className="mx-2"
-              style={{ color: getLinkColor("/Blockchain-Gameshow-Game/host") }}
-              onClick={() => router.push("/Blockchain-Gameshow-Game/host")}
+              style={{ color: getLinkColor("/host") }}
+              onClick={() => router.push("/host")}
             >
               Host Page
             </Nav.Link>

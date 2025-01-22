@@ -6,7 +6,7 @@ export default function Home() {
     <Container style={{ marginTop: "1rem" }}>
       <Row>
         <Col>
-          <Link href="/Blockchain-Gameshow-Game/host">I am a host!</Link>
+          <Link href="/host">I am a host!</Link>
         </Col>
       </Row>
     </Container>
