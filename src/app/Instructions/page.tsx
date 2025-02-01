@@ -103,7 +103,7 @@ export default function InstructionsPage() {
 
                 <div> <img
                 src="/images/image7.png"
-                alt="Blue team linked chain example"
+                alt="Instructions image"
                 width={221}
                 height={175}
                 />
@@ -117,7 +117,7 @@ export default function InstructionsPage() {
 
                 <div> <img
                 src="/images/image8.png"
-                alt="Blue team linked chain example"
+                alt="Instructions image"
                 width={221}
                 height={175}
                 />
@@ -130,7 +130,7 @@ export default function InstructionsPage() {
 
                 <div> <img
                 src="/images/image9.png"
-                alt="Blue team linked chain example"
+                alt="Instructions image"
                 width={221}
                 height={175}
                 />
@@ -143,7 +143,7 @@ export default function InstructionsPage() {
 
                 <div> <img
                 src="/images/image10.png"
-                alt="Blue team linked chain example"
+                alt="Instructions image"
                 width={221}
                 height={175}
                 />
@@ -156,7 +156,7 @@ export default function InstructionsPage() {
 
                 <div> <img
                 src="/images/image11.png"
-                alt="Blue team linked chain example"
+                alt="Instructions image"
                 width={221}
                 height={175}
                 />
