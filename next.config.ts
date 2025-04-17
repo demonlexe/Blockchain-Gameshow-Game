@@ -16,7 +16,7 @@ function getBasePath() {
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: "export",
+  output: isProd ? "export" : "standalone",
 
   basePath: getBasePath(),
 };

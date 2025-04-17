@@ -45,10 +45,10 @@ export default function Header() {
           <Nav className="align-items-center">
             <Link
               className="nav-link mx-2"
-              style={{ color: getLinkColor("/Instructions") }}
-              href={`/Instructions`}
+              style={{ color: getLinkColor("/instructions") }}
+              href={`/instructions`}
             >
-              Go to Instructions Page
+              Instructions Page
             </Link>
           </Nav>
         </Navbar.Collapse>
