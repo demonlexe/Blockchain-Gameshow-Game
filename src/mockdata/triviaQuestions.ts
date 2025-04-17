@@ -247,6 +247,7 @@ const questions: Record<string, string> = {
   Pigs: "What animal is constitutionally protected in Florida while pregnant?",
   Urine: "Lobsters communicate with _____.",
   Duck: "Cartoonist Gary Larson illustrated a satirical comic about a made-up phobia called anatidaephobia, which is fear that a ___ may be watching you",
+  Blue: "What color is the sky?"
 };
 
 export default questions;

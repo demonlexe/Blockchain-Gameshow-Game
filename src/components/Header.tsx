@@ -42,6 +42,15 @@ export default function Header() {
               Host Page
             </Link>
           </Nav>
+          <Nav className="align-items-center">
+            <Link
+              className="nav-link mx-2"
+              style={{ color: getLinkColor("/Instructions") }}
+              href={`/Instructions`}
+            >
+              Go to Instructions Page
+            </Link>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </header>
